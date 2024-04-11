@@ -1,20 +1,23 @@
 import React from "react";
-import Step from "./components/step";
+import Step from "./components/Step";
+import PersonalInfoForm from "./components/PersonalInfoForm";
 
-const page = () => {
+const content = ["YOUR INFO", "SELECT PLAN", "ADD-ONS", "SUMMARY"];
+
+const Page = () => {
   return (
-    <div className="py-16 px-60">
-      <div className="relative rounded-2xl bg-white p-2.5 shadow-lg">
-        <img className="w-1/4" src="./assets/images/bg-sidebar-desktop.svg" />
+    <div className="flex relative rounded-2xl bg-white p-2.5 pr-0 shadow-lg my-20 mx-[19rem]">
+      <div>
+        <img className="w-48" src="./assets/images/bg-sidebar-desktop.svg" alt="Sidebar Bg" />
         <div className="absolute top-3">
-          <Step itemNo="1" content="YOUR INFO" />
-          <Step itemNo="2" content="SELECT PLAN" />
-          <Step itemNo="3" content="ADD-ONS" />
-          <Step itemNo="4" content="SUMMARY" />
+          {[1, 2, 3, 4].map((itemNo) =>
+            <Step key={itemNo} itemNo={itemNo} content={content[itemNo - 1]} />
+          )}
         </div>
       </div>
+      <PersonalInfoForm />
     </div>
   );
 }
 
-export default page;
+export default Page;
