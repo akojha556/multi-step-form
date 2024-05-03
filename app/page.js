@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import PersonalInfoForm from "./components/PersonalInfoForm";
+import SelectPlanForm from "./components/SelectPlanForm";
 
 const Page = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -18,7 +19,7 @@ const Page = () => {
   }
 
   return (
-    <div className="flex relative rounded-2xl bg-white p-2.5 pr-0 shadow-lg my-20 mx-[19rem]">
+    <div className="flex relative rounded-2xl bg-white p-2.5 pr-0 shadow-lg my-20 mx-[19rem] w-[45rem]">
       <div>
         <img className="w-48" src="./assets/images/bg-sidebar-desktop.svg" alt="Sidebar Bg" />
         <div className="absolute top-3">
@@ -57,7 +58,8 @@ const Page = () => {
         </div>
       </div>
       <div>
-        <PersonalInfoForm />
+        {/* <PersonalInfoForm /> */}
+        <SelectPlanForm />
         <div className="flex px-10 justify-between items-center mt-10">
           <button className="text-black text-xs w-24" onClick={handlePreviousSteps}>GO Back</button>
           <button className="border rounded-md px-4 py-2 w-24 bg-marine-blue text-white text-xs mr-6" onClick={handleNextStep}>Next Step</button>
