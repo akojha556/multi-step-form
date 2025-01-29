@@ -1,5 +1,5 @@
 import React from "react";
-import NameField from "./NameField";
+import NameField from "../components/PersonalInfo/NameField";
 
 const PersonalInfoForm = () => {
      const nameFields = ["Name", "Email Address", "Phone Number"];
