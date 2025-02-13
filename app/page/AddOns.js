@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import AddOnOption from './AddOnOption'
+import AddOnOption from '../components/Add-ons/AddOnOption'
 
 const AddOns = () => {
      const addOnOptions = ["Online service", "Larger storage", "Customizable Profile"];
