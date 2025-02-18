@@ -1,8 +1,11 @@
 import { Ubuntu } from "next/font/google";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import StepSidebar from "./components/StepSidebar/StepSidebar";
-import PersonalInfoForm from './page/PersonalInfoForm';
+import PersonalInfoForm from "./page/PersonalInfoForm";
 import SelectPlanForm from "./page/SelectPlanForm";
+import AddOns from "./page/AddOns";
+import { PlanContext } from "./context/PlanContext";
+import { StepContext } from "./context/StepContext";
 
 const ubuntu = Ubuntu({
      weight: ['300', '400', '500', '700'],
@@ -10,52 +13,17 @@ const ubuntu = Ubuntu({
 });
 
 const App = () => {
-     const [inputValue, setInputValue] = useState({
-          name: "",
-          email: "",
-          phoneNumber: ""
-     });
-     const [stepCounter, setStepCounter] = useState(1);
-     const [hasValue, setHasValue] = useState({
-          name: true,
-          email: true,
-          phoneNumber: true
-     });
-
-     const handleChange = (evt) => {
-          const { name, value } = evt.target;
-          //Only Phone Number
-          if (name === "phoneNumber" && (!/^\+?\d*$/.test(value) || value.length > 13)) {
-               return;
-          }
-          //All inputs updates with valid value
-          setInputValue((prevValue) => ({ ...prevValue, [name]: value }));
-     };
-
-     //Action Button Functions
-     const handleNextStep = () => {
-          setHasValue((prevValue) => ({
-               name: inputValue["name"].length > 0,
-               email: inputValue["email"].length > 0,
-               phoneNumber: inputValue["phoneNumber"].length > 0
-          }));
-
-          if (inputValue.name.length > 0 && inputValue.email.length > 0 && inputValue.phoneNumber.length > 0) {
-               setStepCounter(2);
-          }
-     }
-
-     const handlePreviousStep = () => {
-          setStepCounter(1);
-
-     };
+     const { selectedOption, handleClick } = useContext(PlanContext);
+     const {stepCounter, handleNextStep, handlePreviousStep} = useContext(StepContext);
 
      const renderStepComponent = () => {
           switch (stepCounter) {
                case 1:
-                    return <PersonalInfoForm inputValue={inputValue} hasValue={hasValue} handleChange={handleChange} />;
+                    return <PersonalInfoForm/>;
                case 2:
-                    return <SelectPlanForm />;
+                    return <SelectPlanForm selectedOption={selectedOption} handleClick={handleClick} />;
+               case 3:
+                    return <AddOns />;
                default:
                     return null;
           }

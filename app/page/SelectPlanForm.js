@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PlanOption from "../components/SelectPlan/PlanOption";
 import BillingToggle from "../components/SelectPlan/BillingToggle";
 
-const SelectPlanForm = () => {
+const SelectPlanForm = ({ selectedOption, handleClick }) => {
      const planOptions = [
           { name: "Arcade", price: 9 },
           { name: "Advanced", price: 12 },
@@ -10,20 +10,7 @@ const SelectPlanForm = () => {
      ]
 
      const [isMonthly, setIsMonthly] = useState(true);
-     const [selectedOption, setSelectedOption] = useState({
-          Arcade: false,
-          Advanced: false,
-          Pro: false,
-     });
 
-     const handleClick = (option) => {
-          setSelectedOption({
-               Arcade: false,
-               Advanced: false,
-               Pro: false,
-               [option]: true,
-          });
-     };
 
      return (
           <div className="p-4 pl-16 text-marine-blue text-xs">

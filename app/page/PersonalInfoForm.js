@@ -1,7 +1,7 @@
 import React from "react";
 import NameField from "../components/PersonalInfo/NameField";
 
-const PersonalInfoForm = ({ inputValue, hasValue, handleChange }) => {
+const PersonalInfoForm = () => {
      const fields = [
           { label: "Name", type: "text", placeHolder: "e.g. Stephen King", name: "name" },
           { label: "Email Address", type: "email", placeHolder: "e.g. stephenking@lorem.com", name: "email" },
@@ -19,9 +19,6 @@ const PersonalInfoForm = ({ inputValue, hasValue, handleChange }) => {
                          inputName={field.name}
                          inputType={field.type}
                          placeHolder={field.placeHolder}
-                         inputValue={inputValue[field.name]}
-                         hasValue={hasValue[field.name]}
-                         handleChange={handleChange}
                     />
                ))}
           </div>

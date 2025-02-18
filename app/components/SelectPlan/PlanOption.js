@@ -7,7 +7,7 @@ const PlanOption = ({ plan, isMonthly, selectedOption, onClick }) => {
                <p className="font-bold mt-10">{plan.name}</p>
                <p className="text-cool-gray">{`${isMonthly ? plan.price + "/mo" : plan.price * 10 + "/yr"}`}</p>
                <p className={`${isMonthly ? "hidden" : "block"} text-black w-20`}>2 months free</p>
-          </div>
+           </div>
      );
 }
 
