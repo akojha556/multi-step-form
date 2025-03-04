@@ -1,4 +1,3 @@
-"use client"
 import React from 'react'
 import AddOnOption from '../components/Add-ons/AddOnOption'
 
@@ -12,7 +11,7 @@ const AddOns = () => {
                <h1 className="text-marine-blue text-2xl font-bold mb-2">Pick add-ons</h1>
                <p className="text-cool-gray font-light mb-4">Add-ons help enhance gaming experience.</p>
                {addOnOptions.map((eachOption, i) => {
-                    return <AddOnOption key={i} addOnOptions={eachOption} addOnDescription={addOnDescription[i]} addOnPrice={addOnPrice[i]} />
+                    return <AddOnOption key={i} addOnOption={eachOption} addOnDescription={addOnDescription[i]} addOnPrice={addOnPrice[i]} />
                })}
           </div>
      )

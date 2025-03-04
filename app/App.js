@@ -1,11 +1,11 @@
 import { Ubuntu } from "next/font/google";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import StepSidebar from "./components/StepSidebar/StepSidebar";
 import PersonalInfoForm from "./page/PersonalInfoForm";
 import SelectPlanForm from "./page/SelectPlanForm";
 import AddOns from "./page/AddOns";
-import { PlanContext } from "./context/PlanContext";
-import { StepContext } from "./context/StepContext";
+import { InputStepContext } from "./context/InputStepContext";
+import FinishingPage from "./page/FinishingPage";
 
 const ubuntu = Ubuntu({
      weight: ['300', '400', '500', '700'],
@@ -13,17 +13,18 @@ const ubuntu = Ubuntu({
 });
 
 const App = () => {
-     const { selectedOption, handleClick } = useContext(PlanContext);
-     const {stepCounter, handleNextStep, handlePreviousStep} = useContext(StepContext);
+     const {stepCounter, handleNextStep, handlePreviousStep} = useContext(InputStepContext);
 
      const renderStepComponent = () => {
           switch (stepCounter) {
                case 1:
                     return <PersonalInfoForm/>;
                case 2:
-                    return <SelectPlanForm selectedOption={selectedOption} handleClick={handleClick} />;
+                    return <SelectPlanForm />;
                case 3:
                     return <AddOns />;
+               case 4:
+                    return <FinishingPage />;
                default:
                     return null;
           }

@@ -6,12 +6,3 @@ body {
      font-family: "Ubuntu", sans-serif;
      background-color: hsl(217, 100%, 97%);
 }
-
-.sidebar {
-     background-image: url("/assets/images/bg-sidebar-desktop.svg");
-     background-size: contain;
-     background-repeat: no-repeat;
-     background-position: center;
-     width: 12rem;
-     height: 24rem;
-}
