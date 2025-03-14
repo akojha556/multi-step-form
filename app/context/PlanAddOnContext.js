@@ -1,10 +1,12 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const PlanAddOnContext = createContext();
 
 const PlanAddOnProvider = ({ children }) => {
      //Plan Names
      const planOptionNames = ["Arcade", "Advanced", "Pro"];
+
+     const [addOnSum, setAddOnSum] = useState(0);
 
      //Selected plan state (ckecks which plan is active)
      const [selectedOption, setSelectedOption] = useState({
@@ -59,18 +61,44 @@ const PlanAddOnProvider = ({ children }) => {
           customizableProfile: 2
      });
 
+     const [selectedAddOns, setSelectedAddOns] = useState({});
+
      //Toggles add-on section whether plan checked or not
      const handleChecked = (option, price) => {
           setIsAddOnChecked((prevValue) => ({
                ...prevValue,
-               [option]: !isAddOnChecked[option]
+               [option]: !prevValue[option]
           }));
+
+          setSelectedAddOns((prevValue) => {
+               if (prevValue.hasOwnProperty(option)) {
+                    const { [option]: _, ...remainingOption } = prevValue;
+                    setSelectedAddOns(remainingOption);
+               } else {
+                    setSelectedAddOns({
+                         ...prevValue,
+                         [option]: price
+                    });
+               }
+          });
      }
+
+     useEffect(() => {
+          let total = 0;
+          Object.values(selectedAddOns).forEach(value => {
+               total += value;
+          });
+          setAddOnSum(total);
+          console.log(selectedAddOns, total);
+
+
+     }, [selectedAddOns])
 
      return (
           <PlanAddOnContext.Provider
                value={{
                     planOptionNames,
+                    addOnSum,
                     selectedOption,
                     setSelectedOption,
                     planPrices,
@@ -84,6 +112,8 @@ const PlanAddOnProvider = ({ children }) => {
                     setIsAddOnChecked,
                     addOnPrices,
                     setAddOnPrices,
+                    selectedAddOns, 
+                    setSelectedAddOns,
                     handleChecked
                }}>
                {children}

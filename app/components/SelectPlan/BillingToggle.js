@@ -3,32 +3,43 @@ import { PlanAddOnContext } from "@/app/context/PlanAddOnContext";
 
 const BillingToggle = () => {
      //Imports isMonthly and state from PlanAddOncontext
-     const { isMonthly, setIsMonthly, planPrices, setPlanPrices, setAddOnPrices, planInfo, setPlanInfo } = useContext(PlanAddOnContext);
-     
+     const { setSelectedAddOns, setIsAddOnChecked, isMonthly, setIsMonthly, planPrices, setPlanPrices, setAddOnPrices, setPlanInfo } = useContext(PlanAddOnContext);
+
      const handleMonthly = () => {
           setIsMonthly(true);
           setPlanPrices({ Arcade: 9, Advanced: 12, Pro: 15 });
           setAddOnPrices({ onlineService: 1, largerStorage: 2, customizableProfile: 2 });
+          setSelectedAddOns({});
+          setIsAddOnChecked({
+               onlineService: false,
+               largerStorage: false,
+               customizableProfile: false
+          });
      };
-     
+
      const handleYearly = () => {
           setIsMonthly(false);
           setPlanPrices({ Arcade: 90, Advanced: 120, Pro: 150 });
           setAddOnPrices({ onlineService: 10, largerStorage: 20, customizableProfile: 20 });
+          setSelectedAddOns({});
+          setIsAddOnChecked({
+               onlineService: false,
+               largerStorage: false,
+               customizableProfile: false
+          });
      };
-     
+
      //handles effect when user switch plan section from monthly to yearly or vice versa
      useEffect(() => {
           setPlanInfo((prevValue) => {
                console.log(planPrices[prevValue.name]);
-               
+
                return {
                     ...prevValue,
                     price: planPrices[prevValue.name]
                }
           });
      }, [planPrices]);
-
 
      return (
           <div className="flex justify-between bg-gray-100/50 rounded-lg mt-4 p-4 px-[6rem]">
